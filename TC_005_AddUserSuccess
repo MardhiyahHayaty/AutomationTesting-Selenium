@@ -1,0 +1,62 @@
+from selenium import webdriver
+from selenium.webdriver import chrome
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+
+import time
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option('detach', True)
+
+driver = webdriver.Chrome(options=options)
+driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+driver.maximize_window()
+
+time.sleep(1)
+
+username_field = driver.find_element(By.NAME, "username")
+password_field = driver.find_element(By.NAME, "password")
+login_button = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button')
+
+username_field.send_keys("Admin")
+password_field.send_keys("admin123")
+login_button.click()
+
+time.sleep(2)
+
+admin_menu = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a')
+admin_menu.click()
+
+time.sleep(1)
+
+add_button = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[1]/button')
+add_button.click()
+
+time.sleep(3)
+
+select_user_role = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div')
+select_user_role.click()
+#select_user_role = Select(driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div/div[1]'))
+#select_user_role.select_by_visible_text("Admin")
+
+time.sleep(1)
+
+name_emp = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div')
+name_emp.click()
+
+username_emp = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input')
+username_emp.send_keys("Mardhiyah")
+
+pass_admin = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[1]/div/div[2]/input')
+pass_admin.send_keys("mar1234")
+
+confirm_pass_admin = driver.find_element(By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/div/div[2]/input')
+confirm_pass_admin.send_keys("mar1234")
+
+
+time.sleep(1)
+#i = 0
+#while i < len(select_user_role):
+    #if(select_user_role[i].text == "Admin"):
+        #select_user_role[i].click()
